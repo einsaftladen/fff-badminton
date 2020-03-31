@@ -305,9 +305,9 @@ function Games() {
           <CardHeader color="primary">
             <GridContainer justify="flex-start">
               <GridItem xs={12} sm={12} md={12}>
-                <h4 className={classes.cardTitleWhite}>Gamedays</h4>
+                <h4 className={classes.cardTitleWhite}>Spieltag</h4>
                 <p className={classes.cardCategoryWhite}>
-                  Whenever wherever games happend
+                  Spieltag mit Teilnehmern anlegen
                 </p>
               </GridItem>
             </GridContainer>
@@ -330,7 +330,7 @@ function Games() {
                 </MuiPickersUtilsProvider>
 
                 <Button onClick={onClickCreateGameDay} color="primary">
-                  Create a Gameday
+                  Spieltag anlegen
                 </Button>
               </GridItem>
             </GridContainer>
@@ -354,10 +354,10 @@ function Games() {
             <GridContainer justify="space-between" spacing={2}>
               <GridItem xs={12} sm={12} md={12}>
                 <h4 className={classes.cardTitleWhite}>
-                  Games {selectedGameDay[1]}
+                  Ergebnisse heute {selectedGameDay[1]}
                 </h4>
                 <p className={classes.cardCategoryWhite}>
-                  All games per GameDay
+                  Alle Spiele des Spieltags
                 </p>
               </GridItem>
             </GridContainer>
@@ -366,7 +366,7 @@ function Games() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInputSelect
-                    labelText="Player1"
+                    labelText="Vorne"
                     id="player1"
                     formControlProps={{
                       fullWidth: true
@@ -377,7 +377,7 @@ function Games() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInputSelect
-                    labelText="Player2"
+                    labelText="Hinten"
                     id="player2"
                     formControlProps={{
                       fullWidth: true
@@ -388,7 +388,7 @@ function Games() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={2}>
                   <CustomInput
-                    labelText="ResultPlayer1"
+                    labelText="Punkte vorne"
                     id="resultPlayer1"
                     formControlProps={{
                       fullWidth: true
@@ -401,7 +401,7 @@ function Games() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={2}>
                   <CustomInput
-                    labelText="ResultPlayer2"
+                    labelText="Punkte hinten"
                     id="resultPlayer2"
                     formControlProps={{
                       fullWidth: true
@@ -415,7 +415,7 @@ function Games() {
 
                 <GridItem xs={12} sm={12} md={12}>
                   <Button onClick={onClickCreateGame} color="primary">
-                    Create a Game
+                    Ergebnis eintragen
                   </Button>
                 </GridItem>
               </GridContainer>
@@ -426,10 +426,10 @@ function Games() {
               tableHeaderColor="primary"
               tableHead={[
                 "Id",
-                "Player1",
-                "Player2",
-                "ResultPlayer1",
-                "ResultPlayer2"
+                "Spieler vorne",
+                "Spieler hinten",
+                "Punkte vorne",
+                "Punkte hinten"
               ]}
               tableData={gameItems}
             />

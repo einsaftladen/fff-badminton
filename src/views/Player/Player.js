@@ -81,9 +81,9 @@ function Player() {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Player</h4>
+            <h4 className={classes.cardTitleWhite}>Spieler</h4>
             <p className={classes.cardCategoryWhite}>
-              Everyone who can play a game
+              Alle aktiven Spieler in diesem Abo
             </p>
           </CardHeader>
           <CardBody>

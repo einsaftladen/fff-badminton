@@ -33,24 +33,24 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/user",
-    name: "User Profile",
-    icon: Person,
-    component: UserProfile,
+    path: "/games",
+    name: "Spiele erfassen",
+    icon: "find_replace",
+    component: Games,
     layout: "/admin"
   },
   {
     path: "/player",
-    name: "Player",
+    name: "Spieler",
     icon: "accessible",
     component: Player,
     layout: "/admin"
   },
   {
-    path: "/games",
-    name: "Games",
-    icon: "find_replace",
-    component: Games,
+    path: "/user",
+    name: "Mein Profil",
+    icon: Person,
+    component: UserProfile,
     layout: "/admin"
   }
 ];
