@@ -29,5 +29,17 @@
 			"service": "Pinpoint",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"hosting": {
+		"amplifyhosting": {
+			"service": "amplifyhosting",
+			"type": "cicd"
+		}
+	},
+	"storage": {
+		"profilepictures": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }

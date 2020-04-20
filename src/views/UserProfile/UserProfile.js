@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -14,6 +14,12 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
+
+import Amplify, { Analytics, Auth, Storage } from "aws-amplify";
+
+import awsconfig from "./../../aws-exports";
+
+Amplify.configure(awsconfig);
 
 const styles = {
   cardCategoryWhite: {
@@ -37,6 +43,72 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
+  const [username, setUsername] = useState("");
+  const [cognitoId, setcognitoId] = useState("");
+  const [email, setEmail] = useState("");
+  const [image, setImage] = useState(avatar);
+
+  Storage.configure({ track: true, level: "private" });
+
+  useEffect(() => {
+    onPageRendered();
+  }, []);
+
+  const onPageRendered = async () => {
+    Analytics.record({ name: "navUserProfile" });
+    let user = await Auth.currentAuthenticatedUser();
+    setUsername(user.username);
+    setcognitoId(user.attributes.sub);
+    setEmail(user.attributes.email);
+    getProfilePicture();
+  };
+
+  const getProfilePicture = () => {
+    Storage.get("profilePicture.png")
+      .then(url => {
+        var myRequest = new Request(url);
+        fetch(myRequest).then(function(response) {
+          if (response.status === 200) {
+            setImage(url);
+          }
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onChangeEmail = e => {
+    setEmail(e.target.value);
+  };
+
+  const onChangeUsername = e => {
+    setUsername(e.target.value);
+  };
+
+  let fileInput = React.createRef();
+
+  const onOpenFileDialog = () => {
+    fileInput.current.click();
+  };
+
+  const onProcessFile = e => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    try {
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.log(err);
+    }
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    Storage.put("profilePicture.png", file, {
+      contentType: "image/png"
+    })
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -44,35 +116,47 @@ export default function UserProfile() {
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Profil bearbeiten</h4>
-              <p className={classes.cardCategoryWhite}>Alle Angaben sind freiwillig</p>
+              <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
+              <p className={classes.cardCategoryWhite}>Complete your profile</p>
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Firma"
-                    id="company"
+                    labelText="Cognito Id"
+                    id="cognito-id"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      disabled: true,
+                      value: cognitoId
                     }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={3}>
                   <CustomInput
-                    labelText="Benutzername"
+                    labelText="Username"
                     id="username"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      value: username,
+                      onChange: onChangeUsername
                     }}
                   />
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="E-Mail-Adresse"
+                    labelText="Email address"
                     id="email-address"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      value: email,
+                      onChange: onChangeEmail
                     }}
                   />
                 </GridItem>
@@ -80,7 +164,7 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Vorname"
+                    labelText="First Name"
                     id="first-name"
                     formControlProps={{
                       fullWidth: true
@@ -89,7 +173,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Nachname"
+                    labelText="Last Name"
                     id="last-name"
                     formControlProps={{
                       fullWidth: true
@@ -100,7 +184,7 @@ export default function UserProfile() {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Stadt"
+                    labelText="City"
                     id="city"
                     formControlProps={{
                       fullWidth: true
@@ -109,8 +193,8 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Adresse"
-                    id="address"
+                    labelText="Country"
+                    id="country"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -118,7 +202,7 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
-                    labelText="Postleitzahl"
+                    labelText="Postal Code"
                     id="postal-code"
                     formControlProps={{
                       fullWidth: true
@@ -128,9 +212,9 @@ export default function UserProfile() {
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
-                  <InputLabel style={{ color: "#AAAAAA" }}>Über mich</InputLabel>
+                  <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
                   <CustomInput
-                    labelText="Infos eingeben"
+                    labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
                     id="about-me"
                     formControlProps={{
                       fullWidth: true
@@ -144,8 +228,35 @@ export default function UserProfile() {
               </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary">Änderungen speichern</Button>
+              <Button color="primary">Update Profile</Button>
             </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={4}>
+          <Card profile>
+            <CardAvatar profile>
+              <a href="#">
+                <input
+                  type="file"
+                  onChange={onProcessFile}
+                  ref={fileInput}
+                  hidden={true}
+                />
+                <img src={image} onClick={onOpenFileDialog} />
+              </a>
+            </CardAvatar>
+            <CardBody profile>
+              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
+              <h4 className={classes.cardTitle}>Alec Thompson</h4>
+              <p className={classes.description}>
+                Don{"'"}t be scared of the truth because we need to restart the
+                human foundation in truth And I love you like Kanye loves Kanye
+                I love Rick Owens’ bed design but the back is...
+              </p>
+              <Button color="primary" round>
+                Follow
+              </Button>
+            </CardBody>
           </Card>
         </GridItem>
       </GridContainer>
