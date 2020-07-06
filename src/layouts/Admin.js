@@ -18,8 +18,9 @@ import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/fff.png";
 
 import Amplify from "aws-amplify";
-import { withAuthenticator } from "aws-amplify-react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import awsconfig from "./../aws-exports";
+
 Amplify.configure(awsconfig);
 
 let ps;
@@ -82,6 +83,7 @@ function Admin({ ...rest }) {
       window.removeEventListener("resize", resizeFunction);
     };
   }, [mainPanel]);
+
   return (
     <div className={classes.wrapper}>
       <Sidebar

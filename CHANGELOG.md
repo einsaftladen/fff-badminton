@@ -1,280 +1,162 @@
-# Change Log
-
-## [1.8.0] 2019-08-26
-### Bug fixing
-- Rewrote the ISSUE_TEMPLATE
-- Deleted the copyright comments from all files, we only need to keep them inside our index.js and index.html
-- Added script that adds copyrights to the built app
-- Renamed all the files from `.jsx` to `.js`
-- Changed the `withStyles` function from Material-UI with the `makeStyles` function (integration with other frameworks should now be easy)
-- React Hooks is now supported
-### Major style changes
-- Renamed `assets/jss/material-dashboard-react/layouts/dashboardStyle.js` to `assets/jss/material-dashboard-react/layouts/adminStyle.js`
-### Deleted components
-### Added components
-### Deleted dependencies
-### Added dependencies
-+ gulp@4.0.2
-+ gulp-append-prepend@1.0.8
-### Updated dependencies
-```
-@material-ui/core         4.1.0   →    4.3.2
-@material-ui/icons        4.1.0   →    4.2.1
-react                    16.8.6   →   16.9.0
-react-dom                16.8.6   →   16.9.0
-react-scripts             3.0.1   →    3.1.0
-eslint-config-prettier    4.3.0   →    6.0.0
-@types/googlemaps        3.36.4   →   3.37.3
-ajv                      6.10.0   →   6.10.2
-typescript                3.5.1   →    3.5.3
-```
-
-## [1.7.0] 2019-06-19
-### Warning
-**All React Material products have now the same version, i.e. 1.7.0.**
-- **All linting errors are solved now, but due to google analytics stuff, we've needed to add target="_blank" to our links, so this lint error still exists.**
-### Bug fixing
-- Bugs from updated dependencies
-- Removed `.env` file, and replaced it with the `jsconfig.json` file
-- Changes caused by running [the prettier command](https://prettier.io/docs/en/install.html) for *.jsx*, *.js*, *.html* and *.css* files
-- Changed all string refs to `React.createRef()`
-- Added types validation in each component
-- Solved linting issues
-- Solved https://github.com/creativetimofficial/material-dashboard-react/issues/83
-### Major style changes
-### Deleted components
-### Added components
-### Deleted dependencies
-### Added dependencies
-- typescript@3.5.1 (To stop console warnings on install)
-### Updated dependencies
-```
-@material-ui/core          3.9.2   →    4.1.0
-@material-ui/icons         3.0.2   →    4.1.0
-chartist                  0.10.1   →   0.11.2
-history                    4.7.2   →    4.9.0
-prettier                  1.16.4   →   1.18.2
-prop-types                15.7.1   →   15.7.2
-react                     16.8.1   →   16.8.6
-react-dom                 16.8.1   →   16.8.6
-react-router-dom           4.3.1   →    5.0.1
-react-scripts              2.1.5   →    3.0.1
-react-swipeable-views     0.13.1   →   0.13.3
-eslint-config-prettier     4.0.0   →    4.3.0
-eslint-plugin-prettier     3.0.1   →    3.1.0
-@types/googlemaps        3.30.16   →   3.36.4
-ajv                        6.9.1   →   6.10.0
-```
-
-## [1.6.0] 2019-02-13
-### Nice stuff
-- [Added RTL support](https://github.com/creativetimofficial/material-dashboard-react/issues/16)
-### Bug Fixing
-- [Added new script for npm](https://github.com/creativetimofficial/material-dashboard-react/issues/69)
-- Changed our buggy routing system, now it should work flawlessly, for more info, please refer to our [live docs here](https://demos.creative-tim.com/material-dashboard-react/#/documentation/routing-system)
-- [https://github.com/creativetimofficial/material-dashboard-react/issues/67](https://github.com/creativetimofficial/material-dashboard-react/issues/67)
-- [https://github.com/creativetimofficial/material-dashboard-react/issues/68](https://github.com/creativetimofficial/material-dashboard-react/issues/68)
-- [https://github.com/creativetimofficial/material-dashboard-react/issues/66](https://github.com/creativetimofficial/material-dashboard-react/issues/66)
-### Major style changes
-- Almost all styles have been changed due to new components, solved issues or [the prettier command](https://prettier.io/docs/en/install.html)
-### Major components changes
-- Changes caused by running [the prettier command](https://prettier.io/docs/en/install.html) for *.jsx*, *.js*, *.html* and *.css* files
-- **src/index.js**
-- **src/components/CustomTabs/CustomTabs.jsx**
-- **src/components/Header/Header.jsx**
-- **src/components/Sidebar/Sidebar.jsx**
-- **src/components/Snackbar/Snackbar.jsx**
-- **src/components/Snackbar/SnackbarContent.jsx**
-- **src/components/Tasks/Tasks.jsx**
-- **src/views/Notifications/Notifications.jsx**
-### New components
-- **src/components/FixedPlugin/FixedPlugin.jsx**(Left menu used by us for customization - due to this, we've had to add a link for the fonts awesome cdn)
-- **src/components/Header/RTLHeaderLinks.jsx**
-- **src/layouts/Admin.jsx** (instead of Dashboard)
-- **src/layouts/RTL.jsx**
-- **src/views/RTLPage/RTLPage.jsx**
-### Deleted components
-- **src/layouts/Dashboard/Dashboard.jsx** (renamed to Admin)
-- **src/routes/dashboard.jsx**
-- **src/routes/index.jsx**
-### Deleted dependencies
-- `babel-plugin-module-resolver` (because of the upgrade of `react-scripts`)
-- `babel-eslint` (because of the upgrade of `react-scripts`)
-- `eslint` (because of the upgrade of `react-scripts`)
-- `eslint-plugin-react` (because of the upgrade of `react-scripts`)
-- `npm-run-all`
-### Added dependencies
-- `history4.7.2`
-- `prop-types@15.6.2`
-- `prettier@1.16.4`
-### Updated dependencies
-- `@material-ui/core`                *3.1.0*   →     **3.9.2**
-- `@material-ui/icons`               *3.0.1*   →     **3.0.2**
-- `@types/googlemaps`              *3.30.13*   →   **3.30.16**
-- `ajv`                             *^5.0.0*   →     **6.9.1**
-- `prop-types`                      *15.6.2*   →    **15.7.1**
-- `react`                           *16.5.2*   →    **16.8.1**
-- `react-chartist`                  *0.13.1*   →    **0.13.3**
-- `react-dom`                       *16.5.2*   →    **16.8.1**
-- `react-scripts`                    *1.1.5*   →     **2.1.5**
-- `react-swipeable-views`          *0.12.17*   →    **0.13.1**
-- `eslint-config-prettier`           *3.0.1*   →     **4.0.0**
-- `eslint-plugin-prettier`           *2.6.2*   →     **3.0.1**
-
-## [1.5.0] 2018-09-21
-### Nice stuff
-- Added `install:clean` command (deletes `node_modules` and `package-lock.json` and runs `npm install`)
-### Major style changes
-- `src/assets/jss/material-dashboard-react/components/tasksStyle.jsx`
-- `src/assets/jss/material-dashboard-react/checkboxAdnRadioStyle.jsx`
-- `src/assets/jss/material-dashboard-react/components/customTabsStyle.jsx`
-- `src/assets/jss/material-dashboard-react/components/snackbarContentStyle.jsx`
-### Deleted dependencies
-- `@babel/runtime v7.0.0-beta.55`
-### Added dependencies
-### Updated dependencies
-- `@material-ui/core`          *1.4.3*   →     **3.1.0**
-- `@material-ui/icons`         *2.0.1*   →     **3.0.1**
-- `@types/googlemaps`        *3.30.11*   →   **3.30.13**
-- `ajv`                        *6.5.2*   →     **5.0.0** (to stop some warnings)
-- `react`                     *16.4.1*   →    **16.5.2**
-- `react-dom`                 *16.4.1*   →    **16.5.2**
-- `react-scripts`              *1.1.4*   →     **1.1.5**
-- `react-swipeable-views`    *0.12.15*   →   **0.12.17**
-- `eslint-config-prettier`    *^2.9.0*   →    **3.0.1**
-- `eslint-plugin-react`      *^7.10.0*   →   **7.11.1**
-- `prettier`                 *^1.13.7*   →   **1.14.3**
-
-## [1.4.1] 2018-08-10
-### Bug Fixing
-- Github solved issues:
-  - `https://github.com/creativetimofficial/material-dashboard-react/issues/58`
-- Changed the `GridContainer` component
-### Major style changes
-- `src/assets/jss/material-dashboard-react/components/footerStyle.jsx`
-- `src/assets/jss/material-dashboard-react/components/headerStyle.jsx`
-### Added dependencies
-- `@babel/runtime v7.0.0-beta.55`
-### Update dependencies
-- `@material-ui/core v1.4.1` to `@material-ui/core v1.4.3`
-- `@material-ui/icons v2.0.0` to `@material-ui/icons v2.0.1`
+## [1.3.11](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.10...v1.3.11) (2020-07-04)
 
 
-## [1.4.0] 2018-07-26
-### Bug Fixing
-- Added resize event listener for window ([see this issue here](https://github.com/creativetimofficial/ct-material-dashboard-pro-react/issues/40#issuecomment-406983150))
-- Added issues template file
-- Github solved issues:
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/49 (dropped `react-popper` in favour of `@material-ui/core/Popper`)
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/47
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/45
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/38
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/37
-- Github enhancement issues:
-  - https://github.com/creativetimofficial/material-dashboard-react/issues/47 (read the [./README.md](./README.md) file)
-### Major style changes
-- Added styles for `svg`'s, **font-awesome** classes and `.material-icons` class inside
-  - `src/assets/jss/material-dashboard-react/views/dashboardStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/components/buttonStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/components/cardFooterStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/components/cardHeaderStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/components/headerLinksStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/components/customTabsStyle.jsx`
-- Others
-  - `src/assets/jss/material-dashboard-react/tooltipStyle.jsx`
-  - `src/assets/jss/material-dashboard-react/dropdownStyle.jsx`
-### Dropped components
-- Dropped popper usage in favour of `@material-ui/core/Popper` (Changes in `src/components/Header/HeaderLinks.jsx`)
-### Added components
-- `src/components/Grid/GridContainer.jsx` (instead of MUI's `<Grid container...` component)
-### Deleted dependencies
-### Added dependencies
-### Update dependencies
-- `@material-ui/core v1.2.1` to `@material-ui/core v1.4.1`
-- `@material-ui/icons v1.1.0` to `@material-ui/icons v2.0.0`
-- `@types/googlemaps v3.30.9` to `@types/googlemaps v3.30.11`
-- `ajv v6.5.1` to `ajv v6.5.2`
-- `react v16.4.0` to `react v16.4.1`
-- `react-dom v16.4.0` to `react-dom v16.4.1`
-- `react-swipeable-views v0.12.13` to `react-swipeable-views v0.12.15`
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.10.2 to 4.11.0 ([#103](https://github.com/JohannesKonings/fff-badminton/issues/103)) ([af54c0c](https://github.com/JohannesKonings/fff-badminton/commit/af54c0ca8d4a26fc3b46df7b9f669b2a2c07fcdb))
+
+## [1.3.10](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.9...v1.3.10) (2020-06-22)
 
 
-## [1.3.0] 2018-06-15
-### Bug Fixing
-- Changed import from `material-ui` to `@material-ui/core`
-- Droped `src/components/index.js`, and changed all the imports to separate ones
-- Renamed `ItemGrid` to `GridItem`
-### Major style changes
-- Moved the styles of `src/components/` inside `src/assets/jss/material-dashboard-react/components/`
-- Moved the styles of `src/layouts/` inside `src/assets/jss/material-dashboard-react/layouts/`
-- Moved the styles of `src/views/` inside `src/assets/jss/material-dashboard-react/views/`
-- Almost all styles have been changed more or less
-### Dropped components
-- `src/components/CustomButtons/IconButton.jsx` (instead use `src/components/CustomButtons/Button.jsx` with `justIcon` prop)
-- Some components from `src/components/Typography` (instead of these we've added some css to style the normal HTML tags)
-  - `src/components/Typography/A.jsx`
-  - `src/components/Typography/P.jsx`
-  - `src/components/Typography/Small.jsx`
-- All the cards from `src/components/Cards`
-  - `src/components/Cards/ChartCard.jsx`
-  - `src/components/Cards/ProfileCard.jsx`
-  - `src/components/Cards/RegularCard.jsx`
-  - `src/components/Cards/StatsCard.jsx`
-  - `src/components/Cards/TasksCard.jsx`
-### Added components
-- New card components (`src/components/Card/*`) instead of `src/components/Cards/*`
-  - `src/components/Card/Card.jsx`
-  - `src/components/Card/CardAvatar.jsx`
-  - `src/components/Card/CardBody.jsx`
-  - `src/components/Card/CardFooter.jsx`
-  - `src/components/Card/CardHeader.jsx`
-  - `src/components/Card/CardIcon.jsx`
-- `src/components/CustomTabs/CustomTabs.jsx` (instead of `src/components/Cards/TasksCard.jsx`)
-### Deleted dependencies
-- `material-ui@1.0.0-beta.41`
-### Added dependencies
-- `@material-ui/core@1.2.1` (instead of `material-ui@1.0.0-beta.41`)
-- `@types/googlemaps@3.30.9` to stop the warning: **npm WARN react-google-maps@9.4.5 requires a peer of @types/googlemaps@^3.0.0 but none is installed. You must install peer dependencies yourself.**
-- `@types/markerclustererplus@2.1.33` to stop the warning: **npm WARN react-google-maps@9.4.5 requires a peer of @types/markerclustererplus@^2.1.29 but none is installed. You must install peer dependencies yourself.**
-- `ajv@6.5.1` to stop the warning: **npm WARN ajv-keywords@3.2.0 requires a peer of ajv@^6.0.0 but none is installed. You must install peer dependencies yourself.**
-### Update dependencies
-- `@material-ui/icons@1.0.0-beta.42` to `@material-ui/icons@1.1.0`
-- `classnames@2.2.5` to `classnames@2.2.6`
-- `npm-run-all@4.1.2` to `npm-run-all@4.1.3`
-- `perfect-scrollbar@1.3.0` to `perfect-scrollbar@1.4.0`
-- `react@16.2.0` to `react@16.4.0`
-- `react-dom@16.2.0` to `react-dom@16.4.0`
-- `react-router-dom@4.2.2` to `react-router-dom@4.3.1`
-- `react-scripts@1.0.17` to `react-scripts@1.1.4`
-- `react-swipeable-views@0.12.12` to `react-swipeable-views@0.12.13`
+### Bug Fixes
 
-## [1.2.0] 2018-04-16
-### Bug Fixing
-- Renamed `src/containers/App/App.jsx` to `src/layouts/Dashboard/Dashboard.jsx`
-- Renamed `src/variables/styles.jsx` to `src/assets/jss/material-dashboard-react.jsx`
-- Moved all the files from `src/variables/styles/` to `src/assets/jss/material-dashboard-react/`
-- Changes caused by the upgrade of `material-ui`
-- Small bug fixing
-### Deleted dependencies
-- `material-ui-icons@1.0.0-beta.17`
-### Update dependencies
-- `material-ui@1.0.0-beta.34` to `material-ui@1.0.0-beta.41`
-### Added dependencies
-- `@material-ui/icons@1.0.0-beta.42`
+* @aws-amplify/cache added ([a5269ad](https://github.com/JohannesKonings/fff-badminton/commit/a5269adb71c9befb8b31d9ef353ae0433b69c5c0))
 
-## [1.1.0] 2018-02-23
-### Bug Fixing
-- PerfectScrollbar renders only on windows
-- Used [pretier](https://github.com/prettier/prettier) to make the code more readable
-- Optimized images sizes
-- Changed `classes={root:...}` to `classNames={...}` only where it had `classes={root:...}` and not like `classes={root:..., something:... ,...}`
-- Added `classnames()` to avoid doing brittle class name manipulation
-- Classes that do not need states were converted to functions
-- Moved the style variables in `src/variables/styles.jsx` and all the components styles in `src/variables/styles/{$componentNameStyle}.jsx` files
-- Added `-webkit-overflow-scrolling: touch` css for nice scrolling on mobile devices
-- Updated to latest `Material-UI` version (from `v1.0.0.beta30` to `v1.0.0.beta34`)
+## [1.3.9](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.8...v1.3.9) (2020-06-22)
 
-## [1.0.0] 2018-01-29
-### Original Release
-- Added Material-UI as base framework
-- Added design from Material Dashboard by Creative Tim
+
+### Bug Fixes
+
+* upgrade @aws-amplify/auth from 3.2.13 to 3.2.14 ([#99](https://github.com/JohannesKonings/fff-badminton/issues/99)) ([59823e0](https://github.com/JohannesKonings/fff-badminton/commit/59823e056bb03e5f9ef1aee88abe9e74f2dde0a0))
+* upgrade @aws-amplify/core from 3.3.3 to 3.4.0 ([#97](https://github.com/JohannesKonings/fff-badminton/issues/97)) ([be2b574](https://github.com/JohannesKonings/fff-badminton/commit/be2b5748bc165807757b2e60f37f9854c9f9dd31))
+* upgrade @aws-amplify/ui-react from 0.2.8 to 0.2.9 ([#96](https://github.com/JohannesKonings/fff-badminton/issues/96)) ([1e54316](https://github.com/JohannesKonings/fff-badminton/commit/1e5431683994f4c5af3925e3603f49c4f3c866d3))
+* upgrade aws-amplify from 3.0.17 to 3.0.18 ([#98](https://github.com/JohannesKonings/fff-badminton/issues/98)) ([314977b](https://github.com/JohannesKonings/fff-badminton/commit/314977b149fa7b35aa923de4baa5bfe7adcc8472))
+
+## [1.3.8](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.7...v1.3.8) (2020-06-14)
+
+
+### Bug Fixes
+
+* sorting for ewige tabelle added ([#95](https://github.com/JohannesKonings/fff-badminton/issues/95)) ([b795c34](https://github.com/JohannesKonings/fff-badminton/commit/b795c34d191d112ca694e542457b2d8d6961ff1d))
+
+## [1.3.7](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.6...v1.3.7) (2020-06-14)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.10.1 to 4.10.2 ([#93](https://github.com/JohannesKonings/fff-badminton/issues/93)) ([4b03803](https://github.com/JohannesKonings/fff-badminton/commit/4b038034bc5efe2a38802c2a4b5255a1e5e15264))
+
+## [1.3.6](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.5...v1.3.6) (2020-06-11)
+
+
+### Bug Fixes
+
+* package-lock.json recreated ([2c190ec](https://github.com/JohannesKonings/fff-badminton/commit/2c190ec2047a2fa42353234d8ffc237b3a917036))
+
+## [1.3.5](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.4...v1.3.5) (2020-06-11)
+
+
+### Bug Fixes
+
+* unused variable removed ([816d9c7](https://github.com/JohannesKonings/fff-badminton/commit/816d9c7f83df4d71821c84699253e82d2bb058ed))
+
+## [1.3.4](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.3...v1.3.4) (2020-06-10)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/core from 3.3.2 to 3.3.3 ([#90](https://github.com/JohannesKonings/fff-badminton/issues/90)) ([cc243e1](https://github.com/JohannesKonings/fff-badminton/commit/cc243e149322affd42401adae1445dc8845b451e))
+
+## [1.3.3](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.2...v1.3.3) (2020-06-10)
+
+
+### Bug Fixes
+
+* upgrade @aws-amplify/auth from 3.2.12 to 3.2.13 ([#91](https://github.com/JohannesKonings/fff-badminton/issues/91)) ([ffda9a5](https://github.com/JohannesKonings/fff-badminton/commit/ffda9a579b104b0fd196271ddc4bbaff0f5e298f))
+* upgrade aws-amplify from 3.0.16 to 3.0.17 ([1de9ea5](https://github.com/JohannesKonings/fff-badminton/commit/1de9ea55be85e87e60972b4d3858f635c583dfde))
+
+## [1.3.2](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.1...v1.3.2) (2020-06-08)
+
+
+### Bug Fixes
+
+* move from aws-amplify-react to  @aws-amplify/ui-react ([a6385af](https://github.com/JohannesKonings/fff-badminton/commit/a6385af9a543628595dc07b95e0ba5b326e28e67)), closes [/github.com/aws-amplify/amplify-js/issues/5464#issuecomment-617070438](https://github.com//github.com/aws-amplify/amplify-js/issues/5464/issues/issuecomment-617070438)
+
+## [1.3.1](https://github.com/JohannesKonings/fff-badminton/compare/v1.3.0...v1.3.1) (2020-06-07)
+
+
+### Bug Fixes
+
+* wrong calculation ewige tabelle fixed ([bbe6306](https://github.com/JohannesKonings/fff-badminton/commit/bbe63065870968e4fd3b1a076e36b51844ebe489))
+
+# [1.3.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.2.0...v1.3.0) (2020-06-06)
+
+
+### Features
+
+* ewige Tabelle added ([584882a](https://github.com/JohannesKonings/fff-badminton/commit/584882a9c8dedb372311723e1b84b1696455bcaa))
+
+# [1.2.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.1.0...v1.2.0) (2020-06-06)
+
+
+### Features
+
+* ewige Tabelle added ([72158f6](https://github.com/JohannesKonings/fff-badminton/commit/72158f61de08fc7c1bf4ce0832422fe6a8e09f09))
+
+# [1.1.0](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.4...v1.1.0) (2020-06-04)
+
+
+### Bug Fixes
+
+* Trainingsweltmeister count participation per Gameday and not per ([b3a30eb](https://github.com/JohannesKonings/fff-badminton/commit/b3a30ebeb9e2f7f91fc1182a5cc4cfc0110cf1bc))
+
+
+### Features
+
+* Gameweltmeister added ([abd4694](https://github.com/JohannesKonings/fff-badminton/commit/abd4694770c4c92c7301bbdcc4a8913b6b30c94b))
+
+## [1.0.4](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.3...v1.0.4) (2020-06-03)
+
+
+### Bug Fixes
+
+* init serial Number for gameId ([d8c3131](https://github.com/JohannesKonings/fff-badminton/commit/d8c313188426f89d775df5e9cddec055be672911))
+
+## [1.0.3](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.2...v1.0.3) (2020-06-03)
+
+
+### Bug Fixes
+
+* CustomInput TextFieldValue insert again ([789b6a1](https://github.com/JohannesKonings/fff-badminton/commit/789b6a19b95d2295fe53fe29836e6626bfd0076d))
+* games insert with serial id ([7f38d6d](https://github.com/JohannesKonings/fff-badminton/commit/7f38d6df0acdcf353bdade5cd369f8fae1dd42df))
+
+## [1.0.2](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.1...v1.0.2) (2020-06-03)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.10.0 to 4.10.1 ([#83](https://github.com/JohannesKonings/fff-badminton/issues/83)) ([8c2d6df](https://github.com/JohannesKonings/fff-badminton/commit/8c2d6df6a5e8a6a41e25c99a592e15e491c1e641))
+
+## [1.0.1](https://github.com/JohannesKonings/fff-badminton/compare/v1.0.0...v1.0.1) (2020-06-02)
+
+
+### Bug Fixes
+
+* .gitignore after new amplify pull ([d5ceac8](https://github.com/JohannesKonings/fff-badminton/commit/d5ceac88d63d540b313c76e6a05b78adae603539))
+
+# 1.0.0 (2020-06-02)
+
+
+### Bug Fixes
+
+* upgrade @material-ui/core from 4.9.10 to 4.9.11 ([#56](https://github.com/JohannesKonings/fff-badminton/issues/56)) ([af313fc](https://github.com/JohannesKonings/fff-badminton/commit/af313fc074dc26f182705b9394af2841d119c518))
+* upgrade @material-ui/core from 4.9.2 to 4.9.7 ([#18](https://github.com/JohannesKonings/fff-badminton/issues/18)) ([69a99c8](https://github.com/JohannesKonings/fff-badminton/commit/69a99c8e88ce98e525dac56adbbcde3bbbb54d30))
+* upgrade @material-ui/core from 4.9.7 to 4.9.8 ([#31](https://github.com/JohannesKonings/fff-badminton/issues/31)) ([1a25862](https://github.com/JohannesKonings/fff-badminton/commit/1a258621a6dd6cafa419553eb915bc98b2eaba63))
+* upgrade @material-ui/core from 4.9.8 to 4.9.9 ([#47](https://github.com/JohannesKonings/fff-badminton/issues/47)) ([a529167](https://github.com/JohannesKonings/fff-badminton/commit/a5291672ad14a1ff1f4be76e311069771725255f))
+* upgrade @material-ui/core from 4.9.9 to 4.9.10 ([#54](https://github.com/JohannesKonings/fff-badminton/issues/54)) ([49e00f0](https://github.com/JohannesKonings/fff-badminton/commit/49e00f0fc617bccde37b2282264734e5f422b416))
+* upgrade aws-amplify from 2.2.6 to 2.2.7 ([#28](https://github.com/JohannesKonings/fff-badminton/issues/28)) ([ec8b06e](https://github.com/JohannesKonings/fff-badminton/commit/ec8b06eaab4d8c8afc4b50518049e2af1d863e6c))
+* upgrade aws-amplify from 2.2.7 to 2.3.0 ([#42](https://github.com/JohannesKonings/fff-badminton/issues/42)) ([7b18715](https://github.com/JohannesKonings/fff-badminton/commit/7b187155675f02a37acb6a9225adb22a28f14c69))
+* upgrade aws-amplify-react from 3.1.7 to 3.1.8 ([#29](https://github.com/JohannesKonings/fff-badminton/issues/29)) ([d52793d](https://github.com/JohannesKonings/fff-badminton/commit/d52793d85d4e78d4aa2d3f855709bf006d841ec3))
+* upgrade aws-amplify-react from 3.1.8 to 3.1.9 ([#41](https://github.com/JohannesKonings/fff-badminton/issues/41)) ([d027d47](https://github.com/JohannesKonings/fff-badminton/commit/d027d47ebe83b2ceb51a1eeca6f8f5b4095adbbb))
+* upgrade date-fns from 2.11.0 to 2.11.1 ([#30](https://github.com/JohannesKonings/fff-badminton/issues/30)) ([3ec660b](https://github.com/JohannesKonings/fff-badminton/commit/3ec660bfa53fba6fcac32930f6a1b6435cf7261e))
+* upgrade date-fns from 2.11.1 to 2.12.0 ([#52](https://github.com/JohannesKonings/fff-badminton/issues/52)) ([88c4314](https://github.com/JohannesKonings/fff-badminton/commit/88c4314ebb61f5df1df85101c3f21d6394cf610e))
+* upgrade date-fns from 2.9.0 to 2.11.0 ([#19](https://github.com/JohannesKonings/fff-badminton/issues/19)) ([2d54029](https://github.com/JohannesKonings/fff-badminton/commit/2d5402934b48cdf73976ff6dd2b14bcb1f6478c5))
+* upgrade notistack from 0.9.7 to 0.9.9 ([#20](https://github.com/JohannesKonings/fff-badminton/issues/20)) ([6494d54](https://github.com/JohannesKonings/fff-badminton/commit/6494d54b6ac3a406342ab71ba9554879ca7d89ce))
+* upgrade notistack from 0.9.9 to 0.9.10 ([#57](https://github.com/JohannesKonings/fff-badminton/issues/57)) ([75d6f89](https://github.com/JohannesKonings/fff-badminton/commit/75d6f89ad0687c7cde3a5c56f6f471eabd21babf))
+* upgrade react-scripts from 3.4.0 to 3.4.1 ([#25](https://github.com/JohannesKonings/fff-badminton/issues/25)) ([674ac80](https://github.com/JohannesKonings/fff-badminton/commit/674ac8086e126892112cf7a75b9134b2f24feb8c))
+
+
+### Features
+
+* introduce sematic release ([#82](https://github.com/JohannesKonings/fff-badminton/issues/82)) ([6c6fef0](https://github.com/JohannesKonings/fff-badminton/commit/6c6fef0b67f64f6427acdc475a2e003e7b85e677))
+* semantic release added ([#80](https://github.com/JohannesKonings/fff-badminton/issues/80)) ([c952e83](https://github.com/JohannesKonings/fff-badminton/commit/c952e8316da069dbbb2d25242345793c3798a5ad))

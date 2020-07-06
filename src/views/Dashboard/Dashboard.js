@@ -37,7 +37,9 @@ export default function Dashboard() {
   };
 
   const [allGamesItems, setGamesItems] = useState([]);
-  const [trainingsItems, setTrainingItems] = useState([]);
+  const [trainingItems, setTrainingItems] = useState([]);
+  const [gameItems, setGameItems] = useState([]);
+  const [ewigeTabelle, setEwigeTabelle] = useState([]);
   const [numberOfGameDays, setNumberOfGameDays] = useState();
   const [numberOfGames, setNumberOfGames] = useState();
   const [averageParticipants, setAverageParticipants] = useState();
@@ -49,6 +51,7 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    createEwigeTabelle();
     createTrainingsList();
     getNumberOfGameDays();
     getNumberOfGames();
@@ -83,8 +86,6 @@ export default function Dashboard() {
     gameDayPlayerCombined.push(...gameDayPlayer1);
     gameDayPlayerCombined.push(...gameDayPlayer2);
 
-    console.log(gameDayPlayerCombined);
-
     let set = new Set(gameDayPlayerCombined.map(JSON.stringify));
     let gameDayPlayerCombinedUnique = Array.from(set).map(JSON.parse);
 
@@ -98,13 +99,9 @@ export default function Dashboard() {
     }
   };
 
-  const createTrainingsList = async () => {
-    const gamesList = allGamesItems.flatMap(item => [
-      item.player1.name,
-      item.player2.name
-    ]);
+  const calculateTrainingsList = list => {
     var gamesListNo = [];
-    gamesList.reduce(function(res, value) {
+    list.reduce(function(res, value) {
       if (!res[value]) {
         res[value] = { name: value, no: 0 };
         gamesListNo.push(res[value]);
@@ -119,7 +116,90 @@ export default function Dashboard() {
       return [item.name, item.no.toString()];
     });
 
+    return trainingsList;
+  };
+
+  const createTrainingsList = async () => {
+    const gamesList = allGamesItems.flatMap(item => [
+      item.gameday.id + item.player1.name,
+      item.gameday.id + item.player2.name
+    ]);
+    let gameDayListUnique = [...new Set(gamesList)];
+    gameDayListUnique = gameDayListUnique.map(x => x.substring(10));
+
+    const gameListUnique = gamesList.map(x => x.substring(10));
+
+    let trainingsList;
+    trainingsList = calculateTrainingsList(gameDayListUnique);
     setTrainingItems(trainingsList);
+    trainingsList = calculateTrainingsList(gameListUnique);
+    setGameItems(trainingsList);
+  };
+
+  const createEwigeTabelle = async () => {
+    const flatGameList = allGamesItems.flatMap(item => [
+      [
+        item.player1.name,
+        item.resultPlayer1 > item.resultPlayer2 ? 1 : 0,
+        item.resultPlayer1 > item.resultPlayer2 ? 0 : 1,
+        item.resultPlayer1,
+        item.resultPlayer2
+      ],
+      [
+        item.player2.name,
+        item.resultPlayer2 > item.resultPlayer1 ? 1 : 0,
+        item.resultPlayer2 > item.resultPlayer1 ? 0 : 1,
+        item.resultPlayer2,
+        item.resultPlayer1
+      ]
+    ]);
+
+    let gamesListNo = [];
+    flatGameList.reduce(function(res, value) {
+      const name = value[0];
+      if (!res[name]) {
+        res[name] = {
+          name: name,
+          gewonnen: 0,
+          verloren: 0,
+          punkte: 0,
+          gegenpunkte: 0
+        };
+        gamesListNo.push(res[name]);
+      }
+      res[name].gewonnen += value[1];
+      res[name].verloren += value[2];
+      res[name].punkte += value[3];
+      res[name].gegenpunkte += value[4];
+      return res;
+    }, {});
+
+    const ewigeTabelle = gamesListNo.map(item => {
+      return [
+        item.name,
+        item.gewonnen.toString(),
+        item.verloren.toString(),
+        item.punkte.toString(),
+        item.gegenpunkte.toString()
+      ];
+    });
+
+    //sort
+    const sortCols = (a, b, attrs) =>
+      Object.keys(attrs).reduce(
+        (diff, k) => (diff == 0 ? attrs[k](a[k], b[k]) : diff),
+        0
+      );
+    ewigeTabelle.sort((a, b) =>
+      sortCols(a, b, {
+        1: (a, b) => b - a,
+        2: (a, b) => a - b,
+        3: (a, b) => b - a,
+        4: (a, b) => a - b
+      })
+    );
+
+    setEwigeTabelle(ewigeTabelle);
   };
 
   const classes = useStyles();
@@ -171,6 +251,31 @@ export default function Dashboard() {
         </GridItem>
       </GridContainer>
       <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="success">
+              <CardIcon color="danger">
+                <Icon>star</Icon>
+              </CardIcon>
+              <h4 className={classes.cardTitleWhite}>Ewige Tabelle</h4>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="warning"
+                tableHead={[
+                  "Name",
+                  "gewonnen",
+                  "verloren",
+                  "Punkte",
+                  "Gegenpunkte"
+                ]}
+                tableData={ewigeTabelle}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+      <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="warning">
@@ -183,7 +288,24 @@ export default function Dashboard() {
               <Table
                 tableHeaderColor="warning"
                 tableHead={["Name", "Anzahl"]}
-                tableData={trainingsItems}
+                tableData={trainingItems}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={12} md={6}>
+          <Card>
+            <CardHeader color="warning">
+              <h4 className={classes.cardTitleWhite}>Gameweltmeister</h4>
+              <p className={classes.cardCategoryWhite}>
+                Anzahl der Spielteilnahmen
+              </p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="warning"
+                tableHead={["Name", "Anzahl"]}
+                tableData={gameItems}
               />
             </CardBody>
           </Card>
